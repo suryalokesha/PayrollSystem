@@ -1,0 +1,14 @@
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\bin\Debug\net6.0\PayrollLogic.deps.json
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\bin\Debug\net6.0\PayrollLogic.runtimeconfig.json
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\bin\Debug\net6.0\PayrollLogic.dll
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\bin\Debug\net6.0\PayrollLogic.pdb
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\PayrollLogic.csproj.AssemblyReference.cache
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\PayrollLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\PayrollLogic.AssemblyInfoInputs.cache
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\PayrollLogic.AssemblyInfo.cs
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\PayrollLogic.csproj.CoreCompileInputs.cache
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\PayrollLogic.dll
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\refint\PayrollLogic.dll
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\PayrollLogic.pdb
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\PayrollLogic.genruntimeconfig.cache
+C:\Users\surya\source\repos\PayrollSystem\Payroll.Logic\obj\Debug\net6.0\ref\PayrollLogic.dll
