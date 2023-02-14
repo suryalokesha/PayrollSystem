@@ -12,12 +12,5 @@ namespace Payroll.Data
         { }
         public DbSet<Employee> Employees { get; set; }
 
-     /*   protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
-        {
-            optionBuilder.UseSqlServer("server=Server=SURYA;Database=PayrollDB;Trusted_Connection=True;TrustServerCertificate=true");
-            //optionBuilder.UseSqlServer("default");
-        } 
-        */
-
     }
 }

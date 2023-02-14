@@ -26,7 +26,6 @@ namespace Payroll
             var container = new UnityContainer();
 
             // register all your components with the container here
-            // e.g. container.RegisterType<ITestService, TestService>();   
            // container.RegisterType<Employee>();
            // container.RegisterType(typeof(IEmployee), typeof(Employee));
            // container.RegisterType<IEmployeeRepository, EmployeeRepository>(new TransientLifetimeManager());

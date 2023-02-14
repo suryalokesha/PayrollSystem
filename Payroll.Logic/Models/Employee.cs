@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.Extensions.DependencyInjection;
 using Payroll.Data;
 
 namespace Payroll.Logic
@@ -42,10 +40,11 @@ namespace Payroll.Logic
 
         private static IUnitOfWork objUnitOfWork;
 
-        // Create Employee
+       // Create Employee
         public static Employee CreateEmployee(string firstName, string lastName, DateTime hireDate, PayFrequency payFrequency, decimal baseSalary, SickPay sickPay)
         {
-            Employee employee = new Employee()
+
+            Employee employee = new Employee() 
             {
                 firstName = firstName,
                 lastName = lastName,
@@ -56,15 +55,63 @@ namespace Payroll.Logic
                 deductions = new List<Deduction>()
             };
 
-            PayrollConnectionSettings dbConnection = new PayrollConnectionSettings();
-
             // Save Employee to database
-            objUnitOfWork = new UnitOfWork(dbConnection.GetDbContext());
+            objUnitOfWork = new UnitOfWork(DbSettings.GetDbContext());
             objUnitOfWork.EmployeeRepository.Insert(employee);
             objUnitOfWork.Save();
             return employee;
         }
 
+        // Update Employee
+        public static Employee UpdateEmployee(int employeeId, string firstName, string lastName, DateTime hireDate, PayFrequency payFrequency, decimal baseSalary, SickPay sickPay)
+        {
+            Employee employee = new Employee()
+            {
+                employeeId = employeeId,
+                firstName = firstName,
+                lastName = lastName,
+                hireDate = hireDate,
+                payFrequency = payFrequency,
+                baseSalary = baseSalary,
+                sickPay = sickPay,
+                deductions = new List<Deduction>()
+            };
+
+            objUnitOfWork = new UnitOfWork(DbSettings.GetDbContext());
+            objUnitOfWork.EmployeeRepository.Update(employee);
+            objUnitOfWork.Save();
+            return employee;
+        }
+
+        //  Delete Employee
+        public static void DeleteEmployee(int employeeId)
+        {
+            
+            objUnitOfWork = new UnitOfWork(DbSettings.GetDbContext());
+            objUnitOfWork.EmployeeRepository.Delete(employeeId);
+            objUnitOfWork.Save();
+        }
+
+        //  Get employee by employeeid
+        public static Employee GetEmployeeByEmployeeId(int employeeId)
+        {
+            Employee employee = new Employee();
+            objUnitOfWork = new UnitOfWork(DbSettings.GetDbContext());
+            employee = objUnitOfWork.EmployeeRepository.GetById(employeeId);
+            return employee;
+        }
+
+        //  Get all employees
+        public static List<Employee> GetEmployeesData()
+        {
+            List<Employee> employees = new List<Employee>();
+            objUnitOfWork = new UnitOfWork(DbSettings.GetDbContext());
+            employees = objUnitOfWork.EmployeeRepository.GetAll().ToList();
+            return employees;
+        }
+
+
+        // Calculate labour cost 
         public decimal CalculateLabourCost(DateTime weekStart, int hours, int minutes, int sickDays)
         {
             // Assign appropriate Pay frequency for salary calculation

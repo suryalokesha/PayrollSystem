@@ -4,9 +4,9 @@ using Payroll.Data;
 
 namespace Payroll.Logic
 {
-    public class PayrollConnectionSettings 
+    public static class DbSettings 
     {
-        public AppDbContext GetDbContext() 
+        public static AppDbContext GetDbContext() 
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             optionsBuilder.UseSqlServer(GetConnectionString("default"));

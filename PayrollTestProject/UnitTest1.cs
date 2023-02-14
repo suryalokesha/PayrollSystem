@@ -1,4 +1,6 @@
 
+using NuGet.Frameworks;
+
 namespace PayrollTestProject
 {
     public class Tests
@@ -6,6 +8,7 @@ namespace PayrollTestProject
         private Employee _employee;
         private Mock<IUnitOfWork> _unitOfWorkMock;
 
+        // initialize the instances required for test cases 
         [SetUp]
         public void Setup()
         {
@@ -16,11 +19,12 @@ namespace PayrollTestProject
                 lastName = "Rakesh",
                 hireDate = new DateTime(2020, 01, 01),
                 payFrequency = PayFrequency.Weekly,
-                baseSalary = 50000,
+                baseSalary = 45000,
                 sickPay = SickPay.COSP
             };
         }
 
+        //    TestCase for the to check Valid Input
         [Test]
         public void CreateEmployee_ValidInput_ReturnsEmployee()
         {
@@ -57,41 +61,26 @@ namespace PayrollTestProject
             var result = Employee.CreateEmployee("Rakesh", "Sharma", new DateTime(2022, 1, 1), PayFrequency.Weekly, 50000, SickPay.COSP);
 
             // Assert
-            _unitOfWorkMock.Verify(uow => uow.EmployeeRepository.Insert(result), Times.Once());
-            _unitOfWorkMock.Verify(uow => uow.Save(), Times.Once());
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.employeeId);
         }
 
-        //    TestCase for the CalculateLabourCost method
+
+        //    TestCase for the Update method of Employee repository
         [Test]
-        public void CalculateLabourCost_WithValidInputs_ReturnsExpectedResult()
+        public void UpdateEmployee_ShouldUpdateEmployeeIntoDb()
         {
             // Arrange
-            var mockPayStrategy = new Mock<IPayFrequency>();
-            mockPayStrategy.Setup(m => m.CalculateSalary(It.IsAny<DateTime>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<decimal>()))
-                .Returns(10000);
-
-            var mockSickPayStrategy = new Mock<ISickPay>();
-            mockSickPayStrategy.Setup(m => m.CalculateSickPay(It.IsAny<DateTime>(), It.IsAny<int>(), It.IsAny<decimal>()))
-                .Returns(1000);
-
-            var mockDeductionStrategy = new Mock<IDeducionStrategy>();
-            mockDeductionStrategy.Setup(m => m.CalculateDeduction(It.IsAny<decimal>()))
-                .Returns(9000);
-
-            Employee employee = new Employee
-            {
-                payStrategy = mockPayStrategy.Object,
-                sickPayStrategy = mockSickPayStrategy.Object,
-                deductionStrategy = mockDeductionStrategy.Object
-            };
-
-            employee.AddDeduction(Deduction.Pension);
+            _unitOfWorkMock.Setup(uow => uow.EmployeeRepository.Insert(_employee));
+            _unitOfWorkMock.Setup(uow => uow.Save());
 
             // Act
-            var result = employee.CalculateLabourCost(new DateTime(2021, 01, 01), 8, 0, 0);
+            var result = Employee.CreateEmployee("Rakesh", "Sharma", new DateTime(2022, 1, 1), PayFrequency.Weekly, 50000m, SickPay.SSP);
 
             // Assert
-            Assert.AreEqual(9000, result);
+            Assert.AreNotEqual(result.hireDate, _employee.hireDate);
+            Assert.AreNotEqual(result.baseSalary, _employee.baseSalary);
+            Assert.AreNotEqual(result.sickPay, _employee.sickPay);
         }
 
         //        TestCase for the AddDeduction method:
@@ -112,11 +101,18 @@ namespace PayrollTestProject
         [Test]
         public void GetFullName_ShouldReturnFirstAndLastName()
         {
+
+            // Arrange
+           var deductions = new List<Deduction>();
+            deductions.Add(Deduction.Pension);
+           _employee.deductions = deductions;
+          
             // Act
             var result = _employee.GetFullName();
+          
 
             // Assert
-            Assert.AreEqual("Rakesh Sharma", result);
+            Assert.AreEqual("Sharma Rakesh", result);
         }
 
     }

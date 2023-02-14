@@ -7,5 +7,6 @@ namespace Payroll.Logic
         string GetFullName();
         void AddDeduction(Deduction type);
         decimal CalculateLabourCost(DateTime weekStart, int hours, int minutes, int sickDays);
+    
     }
 }
