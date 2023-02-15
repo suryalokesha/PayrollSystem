@@ -51,10 +51,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.AspNet.Mvc": {
-              "target": "Package",
-              "version": "[5.2.9, )"
-            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -70,14 +66,6 @@
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[7.0.0, )"
-            },
-            "Unity": {
-              "target": "Package",
-              "version": "[5.11.10, )"
-            },
-            "Unity.Mvc": {
-              "target": "Package",
-              "version": "[5.11.1, )"
             }
           },
           "imports": [

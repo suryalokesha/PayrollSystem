@@ -161,3 +161,4 @@ C:\Users\surya\source\repos\PayrollSystem\PayrollTestProject\obj\Debug\net6.0\re
 C:\Users\surya\source\repos\PayrollSystem\PayrollTestProject\obj\Debug\net6.0\PayrollTestProject.pdb
 C:\Users\surya\source\repos\PayrollSystem\PayrollTestProject\obj\Debug\net6.0\PayrollTestProject.genruntimeconfig.cache
 C:\Users\surya\source\repos\PayrollSystem\PayrollTestProject\obj\Debug\net6.0\ref\PayrollTestProject.dll
+C:\Users\surya\source\repos\PayrollSystem\PayrollTestProject\bin\Debug\net6.0\appsettings.json
